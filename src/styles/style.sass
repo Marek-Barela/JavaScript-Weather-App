@@ -1,3 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200,400,800&display=swap')
+
+*
+  box-sizing: border-box
 body 
   margin: 0
-  user-select: none // autoprefix testing
+  font-family: 'Montserrat', sans-serif
+  color: #555555
+  min-width: 450px
+h1
+  margin: 0
+input, button
+  outline: 0
+  font-size: 0.6em
+  letter-spacing: 1px
+  cursor: pointer
+.header
+  height: 60px
+  display: flex
+  justify-content: space-around
+  align-items: center
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,.016)
+  border-bottom: 1px solid rgba(0,0,0,.1)
+.header__logo
+  h1
+    font-size: 1em
+    letter-spacing: 1px
+    user-select: none
+.header__search
+  form
+    display: flex
+  input, button
+    height: 35px
+.header__search--input
+  width: 200px
+  border: 1px solid rgba(0,0,0,.1)
+  padding: 10px
+  border-radius: 6px 0 0 6px
+.header__search--button
+  color: #ffffff
+  width: 35px
+  background-color: #bd0d00
+  border: none
+  transition: background-color 0.4s
+  &:hover
+    background-color: #333333
+.weather-section
+ background: linear-gradient(90deg,#bd0d00,#8f0f00)
+.weather__container
+  max-width: 1200px
+  margin: 0 auto
+  color: #ffffff
+  min-height: calc(100vh - 60px)
+  display: grid
+  grid-template-areas: "current current current chart chart chart chart" "forecast forecast forecast forecast forecast forecast forecast"
+  padding: 60px 10px
+.weather__current
+  grid-area: current
+.weather__chart
+  grid-area: chart
+.weather__forecast
+  grid-area: forecast
+  background-color: rgba(0,0,0,0.3)
+  border-radius: 15px
+  padding: 20px 0
+  margin-top: 60px
+.weather__forecast--day-container
+  text-align: center
+  width: 20%
+  padding: 20px 0
+  h3
+    margin: 0 0 10px 0
