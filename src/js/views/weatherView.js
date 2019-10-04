@@ -64,3 +64,9 @@ export const resetWeatherView = () => {
   DOMElements.weatherForecastContainer.innerHTML = "";
   DOMElements.chartContainer.innerHTML = "";
 }
+
+export const renderLoaders = () => {
+  DOMElements.weatherCurrentContainer.innerHTML = `<div class="hourglass"></div>`;
+  DOMElements.weatherForecastContainer.innerHTML = `<div class="hourglass"></div>`;
+  DOMElements.chartContainer.innerHTML = `<div class="hourglass"></div>`;
+}

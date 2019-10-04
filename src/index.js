@@ -5,7 +5,8 @@ import {
   renderCurrentWeather,
   resetWeatherView,
   renderFiveDaysWeather,
-  renderWeatherChart
+  renderWeatherChart,
+  renderLoaders
 } from "./js/views/weatherView";
 import { getHalfDayForecastHours } from "./js/utils/getHalfDayForecastHours";
 import { getHalfDayForecastTemperature } from "./js/utils/getHalfDayForecastTemperature";
@@ -20,12 +21,14 @@ const state = {
 
 const searchController = async () => {
   const inputValue = DOMElements.searchInput.value;
+  resetWeatherView(); // Clear prev data
+  renderLoaders(); // Display loader
   state.weatherData = new Search(inputValue);
   await state.weatherData.getDataByCityName();
   await state.weatherData.getWeatherDataByCityKey();
   await state.weatherData.getHalfDayForecast();
   await state.weatherData.getFiveDaysForecast();
-  resetWeatherView();
+  resetWeatherView(); // Clear loader and display data
   currentWeatherController();
   chartController();
   fiveDaysForecastController();
