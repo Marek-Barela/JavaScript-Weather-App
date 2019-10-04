@@ -4,10 +4,12 @@ import "./styles/style.sass";
 
 const state = [];
 
-const searchController = () => {
+const searchController = async () => {
   const inputValue = DOMElements.searchInput.value;
-  state.cityWeather = new Search(inputValue);
-  state.cityWeather.getWeatherDataByCityName();
+  state.cityData = new Search(inputValue);
+  await state.cityData.getDataByCityName();
+  await state.cityData.getWeatherDataByCityKey(state.cityData.key);
+  console.log(state)
 }
 
 DOMElements.searchForm.addEventListener("submit", (e) => {
