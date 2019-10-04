@@ -9,13 +9,13 @@ export const renderCurrentWeather = data => {
   DOMElements.weatherTime.innerText = time;
   DOMElements.cityName.innerText = cityName;
   DOMElements.currentWeatherImage.src = icon;
-  DOMElements.currentTemperature.innerText = temperature + "\u2103";
-  DOMElements.currentPressure.innerText = pressure + "hPa";
+  DOMElements.currentTemperature.innerText = temperature + " " + "\u2103";
+  DOMElements.currentPressure.innerText = pressure + " hPa";
 }
 
 const convertSecondsToDate = data => {
   const secondsToMilliseconds = data.currentWeather.EpochTime * 1000;
-  return new Date(secondsToMilliseconds).toUTCString().slice(0, 16);
+  return new Date(secondsToMilliseconds).toUTCString().slice(0, 16); //Thu, 05 Jul 2019
 }
 
 const getAddressOfIcon = data => {
