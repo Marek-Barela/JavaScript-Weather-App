@@ -70,3 +70,15 @@ export const renderLoaders = () => {
   DOMElements.weatherForecastContainer.innerHTML = `<div class="hourglass"></div>`;
   DOMElements.chartContainer.innerHTML = `<div class="hourglass"></div>`;
 }
+
+export const renderErrorMessage = () => {
+  DOMElements.weatherCurrentContainer.innerHTML = `
+  <div class="error__container"><p>Problem occurred during loading resources. Enter proper city name and try again</p></div>
+  `;
+  DOMElements.weatherForecastContainer.innerHTML = `
+  <div class="error__container"><p>Problem occurred during loading resources. Enter proper city name and try again</p></div>
+  `;
+  DOMElements.chartContainer.innerHTML = `
+  <div class="error__container"><p>Problem occurred during loading resources. Enter proper city name and try again</p></div>
+  `;
+}
