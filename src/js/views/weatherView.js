@@ -42,9 +42,12 @@ const renderForecastWeather = forecast => {
   DOMElements.weatherForecastContainer.insertAdjacentHTML("beforeend", markup);
 }
 
-export const renderFiveDaysWeather = data => {
-  
+export const renderWeatherChart = () => {
+  const markup = `<canvas class="weather__chart--canvas" width="200" height="120"></canvas>`;
+  DOMElements.chartContainer.insertAdjacentHTML("beforeend", markup);
+}
 
+export const renderFiveDaysWeather = data => {
   return data.fiveDaysForecast.forEach(forecast => { 
     renderForecastWeather({...forecast})
   })
@@ -53,6 +56,7 @@ export const renderFiveDaysWeather = data => {
 export const resetWeatherView = () => {
   DOMElements.weatherCurrentContainer.innerHTML = "";
   DOMElements.weatherForecastContainer.innerHTML = "";
+  DOMElements.chartContainer.innerHTML = "";
 }
 
 const convertSecondsToDate = data => {

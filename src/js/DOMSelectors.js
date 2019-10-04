@@ -3,7 +3,7 @@ const DOMElements = {
   searchInput: document.querySelector(".header__search--input"),
   weatherCurrentContainer: document.querySelector(".weather__current"),
   weatherForecastContainer: document.querySelector(".weather__forecast"),
-  chart: document.getElementById("weatherChart").getContext('2d'),
+  chartContainer: document.querySelector(".weather__chart")
 }
 
 export default DOMElements;

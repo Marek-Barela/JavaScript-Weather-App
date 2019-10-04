@@ -6,7 +6,8 @@ import {
   resetWeatherView,
   getHalfDayForecastHours,
   getHalfDayForecastTemperature,
-  renderFiveDaysWeather
+  renderFiveDaysWeather,
+  renderWeatherChart
 } from "./js/views/weatherView";
 import "./styles/style.sass";
 
@@ -36,8 +37,11 @@ const currentWeatherController = () => {
 const chartController = () => {
   const forecastHours = getHalfDayForecastHours(state.weatherData);
   const forecastTemperature = getHalfDayForecastTemperature(state.weatherData);
+  renderWeatherChart();
+  const canvas = [...DOMElements.chartContainer.children];
+  const ctx = canvas[0].getContext("2d");
   Chart.defaults.global.defaultFontColor = "#ffffff";
-  new Chart(DOMElements.chart, {
+  new Chart(ctx, {
     type: "line",
     data: {
       labels: forecastHours,
