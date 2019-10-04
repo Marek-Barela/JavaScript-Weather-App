@@ -13,7 +13,6 @@ input, button
   outline: 0
   font-size: 0.6em
   letter-spacing: 1px
-  cursor: pointer
 .header
   height: 50px
   display: flex
@@ -42,6 +41,7 @@ input, button
   background-color: #bd0d00
   border: none
   transition: background-color 0.4s
+  cursor: pointer
   &:hover
     background-color: #333333
 .weather-section
@@ -52,17 +52,18 @@ input, button
   color: #ffffff
   min-height: calc(100vh - 50px)
   display: grid
-  grid-template-areas: "current current current chart chart chart chart" "forecast forecast forecast forecast forecast forecast forecast"
+  grid-template-areas: "current current current current current current current" "chart chart chart chart chart chart chart" "forecast forecast forecast forecast forecast forecast forecast"
   padding: 60px 10px
 .weather__current
   grid-area: current
   text-align: center
+  min-height: 300px
 .weather__current--time
   font-size: 0.8em
   letter-spacing: 2px
 .weather__current--city
   font-size: 1em
-  margin: 40px 0 10px
+  margin: 30px 0 10px
   letter-spacing: 3px
 .weather__current--icon-container
   display: flex
@@ -91,3 +92,7 @@ input, button
   padding: 20px 0
   h3
     margin: 0 0 10px 0
+
+@media (min-width: 850px)
+  .weather__container
+    grid-template-areas: "current current current chart chart chart chart" "forecast forecast forecast forecast forecast forecast forecast"

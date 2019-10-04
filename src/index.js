@@ -1,6 +1,6 @@
 import Search from "./js/models/Search";
 import DOMElements from "./js/DOMSelectors";
-import { renderCurrentWeather } from "./js/views/weatherView";
+import { renderCurrentWeather, resetWeatherView } from "./js/views/weatherView";
 import "./styles/style.sass";
 
 const state = {
@@ -14,7 +14,8 @@ const searchController = async () => {
   state.cityData = new Search(inputValue);
   await state.cityData.getDataByCityName();
   await state.cityData.getWeatherDataByCityKey(state.cityData.key);
-  renderCurrentWeather(state.cityData)
+  resetWeatherView();
+  renderCurrentWeather(state.cityData);
 }
 
 DOMElements.searchForm.addEventListener("submit", (e) => {

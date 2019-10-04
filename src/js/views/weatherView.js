@@ -6,11 +6,22 @@ export const renderCurrentWeather = data => {
   const icon = getAddressOfIcon(data);
   const temperature = roundTemperature(data);
   const pressure = data.currentWeather.Pressure.Metric.Value;
-  DOMElements.weatherTime.innerText = time;
-  DOMElements.cityName.innerText = cityName;
-  DOMElements.currentWeatherImage.src = icon;
-  DOMElements.currentTemperature.innerText = temperature + " " + "\u2103";
-  DOMElements.currentPressure.innerText = pressure + " hPa";
+
+  const markup = `
+    <span class="weather__current--time">${time}</span>
+    <h2 class="weather__current--city">${cityName}</h2>
+    <div class="weather__current--icon-container">
+      <img class="weather__current--image" src=${icon} />
+      <span class="weather__current--temperature">${temperature} \u2103</span>
+    </div>
+    <span class="weather__current--pressure">${pressure} hPa</span>
+  `;
+
+  DOMElements.weatherCurrentContainer.insertAdjacentHTML("beforeend", markup);
+}
+
+export const resetWeatherView = () => {
+  DOMElements.weatherCurrentContainer.innerHTML = "";
 }
 
 const convertSecondsToDate = data => {
