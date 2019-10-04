@@ -1,3 +1,170 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200,400,800&display=swap')
+
+*
+  box-sizing: border-box
 body 
   margin: 0
-  user-select: none // autoprefix testing
+  font-family: 'Montserrat', sans-serif
+  color: #555555
+  min-width: 450px
+h1
+  margin: 0
+input, button
+  outline: 0
+  font-size: 0.6em
+  letter-spacing: 1px
+.header
+  height: 50px
+  display: flex
+  justify-content: space-around
+  align-items: center
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,.016)
+  border-bottom: 1px solid rgba(0,0,0,.1)
+.header__logo
+  h1
+    font-size: 1em
+    letter-spacing: 1px
+    user-select: none
+.header__search
+  form
+    display: flex
+  input, button
+    height: 35px
+.header__search--input
+  width: 200px
+  border: 1px solid rgba(0,0,0,.1)
+  padding: 10px
+  border-radius: 6px 0 0 6px
+.header__search--button
+  color: #ffffff
+  width: 35px
+  background-color: #bd0d00
+  border: none
+  transition: background-color 0.4s
+  cursor: pointer
+  &:hover
+    background-color: #333333
+.weather-section
+ background: linear-gradient(90deg,#bd0d00,#8f0f00)
+.weather__container
+  max-width: 1200px
+  margin: 0 auto
+  color: #ffffff
+  min-height: calc(100vh - 50px)
+  display: grid
+  grid-template-areas: "current current current current current current current" "chart chart chart chart chart chart chart" "forecast forecast forecast forecast forecast forecast forecast"
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+  padding: 60px 10px
+.weather__current
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  grid-area: current
+  text-align: center
+  min-height: 250px
+.weather__current--time
+  font-size: 0.8em
+  letter-spacing: 2px
+.weather__current--city
+  font-size: 2em
+  margin: 20px 0 10px
+  letter-spacing: 3px
+.weather__current--icon-container
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-bottom: 10px
+.weather__current--image
+  width: 225px
+  height: 125px
+.weather__current--temperature
+  font-size: 1.5em
+.weather__current--pressure
+  font-size: 0.8em
+  letter-spacing: 2px
+.weather__chart
+  display: flex
+  justify-content: center
+  align-items: center
+  grid-area: chart
+.weather__forecast
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  align-items: center
+  grid-area: forecast
+  background-color: rgba(0,0,0,0.3)
+  border-radius: 15px
+  padding: 20px 0
+  margin-top: 60px
+.weather__forecast--day-container
+  text-align: center
+  width: 100%
+  padding: 20px 0
+  h3
+    text-transform: uppercase
+    font-size: 1.1em
+    margin: 0
+    padding: 10px 0
+    letter-spacing: 3px
+.weather__forecast--icon-container
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 10px 0
+  span
+    margin-left: 15px
+.footer__paragraph
+  font-size: 0.55em
+  font-weight: 800
+  width: 100%
+  padding: 3px 0
+  background-color: #ffffff
+  text-align: center
+  letter-spacing: 2px
+.error__container
+  text-align: center
+  padding: 0 30px
+  width: 300px
+  p
+    font-size: 0.8em
+    font-weight: 800
+    letter-spacing: 2px
+    line-height: 24px
+
+.hourglass
+  display: inline-block
+  position: relative
+  width: 64px
+  height: 64px
+.hourglass:after
+  content: " "
+  display: block
+  border-radius: 50%
+  width: 0
+  height: 0
+  margin: 6px
+  box-sizing: border-box
+  border: 26px solid #ffffff
+  border-color: #ffffff transparent #ffffff transparent
+  animation: lds-hourglass 1.8s infinite
+@keyframes lds-hourglass 
+  0%
+    transform: rotate(0)
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19)
+  50%
+    transform: rotate(900deg)
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1)
+  100%
+    transform: rotate(1800deg)
+
+@media (min-width: 650px)
+  .weather__forecast--day-container
+    width: 33%
+@media (min-width: 850px)
+  .weather__container
+    grid-template-areas: "current current current chart chart chart chart" "forecast forecast forecast forecast forecast forecast forecast"
+@media (min-width: 950px)
+  .weather__forecast--day-container
+    width: 20%
