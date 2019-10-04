@@ -9,6 +9,7 @@ import {
 } from "./js/views/weatherView";
 import { getHalfDayForecastHours } from "./js/utils/getHalfDayForecastHours";
 import { getHalfDayForecastTemperature } from "./js/utils/getHalfDayForecastTemperature";
+import { chartOptions } from "./js/utils/getChartOptions";
 import "./styles/style.sass";
 
 const state = {
@@ -40,45 +41,9 @@ const chartController = () => {
   renderWeatherChart();
   const canvas = [...DOMElements.chartContainer.children];
   const ctx = canvas[0].getContext("2d");
+  const options = chartOptions(forecastHours, forecastTemperature);
+  new Chart(ctx, options);
   Chart.defaults.global.defaultFontColor = "#ffffff";
-  new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: forecastHours,
-      datasets: [
-        {
-          label: "Temperature",
-          data: forecastTemperature,
-          pointHoverBackgroundColor: "#ffffff",
-          pointHoverRadius: 6,
-          backgroundColor: ["rgba(255, 255, 255, 0.5)"],
-          borderColor: ["#ffffff"],
-          borderWidth: 3
-        }
-      ]
-    },
-    options: {
-      title: {
-        display: true,
-        text: "12 Hours Forecast",
-        fontSize: 25,
-        padding: 30
-      },
-      legend: {
-        position: "bottom"
-      },
-      tooltips: {
-        callbacks: {
-          labelColor: function() {
-            return {
-              borderColor: "#ffffff",
-              backgroundColor: "#ffffff"
-            };
-          }
-        }
-      }
-    }
-  });
 };
 
 const fiveDaysForecastController = () => {
