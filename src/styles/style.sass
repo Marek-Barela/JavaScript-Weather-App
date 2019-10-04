@@ -53,11 +53,16 @@ input, button
   min-height: calc(100vh - 50px)
   display: grid
   grid-template-areas: "current current current current current current current" "chart chart chart chart chart chart chart" "forecast forecast forecast forecast forecast forecast forecast"
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr
   padding: 60px 10px
 .weather__current
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
   grid-area: current
   text-align: center
-  min-height: 300px
+  min-height: 250px
 .weather__current--time
   font-size: 0.8em
   letter-spacing: 2px
