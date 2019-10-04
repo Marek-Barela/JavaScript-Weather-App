@@ -67,7 +67,7 @@ input, button
   font-size: 0.8em
   letter-spacing: 2px
 .weather__current--city
-  font-size: 1em
+  font-size: 1.4em
   margin: 30px 0 10px
   letter-spacing: 3px
 .weather__current--icon-container
@@ -86,6 +86,9 @@ input, button
 .weather__chart
   grid-area: chart
 .weather__forecast
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
   grid-area: forecast
   background-color: rgba(0,0,0,0.3)
   border-radius: 15px
@@ -93,11 +96,30 @@ input, button
   margin-top: 60px
 .weather__forecast--day-container
   text-align: center
-  width: 20%
+  width: 100%
   padding: 20px 0
   h3
-    margin: 0 0 10px 0
+    text-transform: uppercase
+    font-size: 1.3em
+    margin: 0 0 30px 0
+    letter-spacing: 4px
+.weather__forecast--icon-container
+  display: flex
+  justify-content: center
+  align-items: center
+  margin: 10px 0
+  img
+    width: 100px
+    height: 60px
+  span
+    margin-left: 15px
 
+@media (min-width: 650px)
+  .weather__forecast--day-container
+    width: 33%
 @media (min-width: 850px)
   .weather__container
     grid-template-areas: "current current current chart chart chart chart" "forecast forecast forecast forecast forecast forecast forecast"
+@media (min-width: 950px)
+  .weather__forecast--day-container
+    width: 20%

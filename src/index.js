@@ -5,7 +5,8 @@ import {
   renderCurrentWeather,
   resetWeatherView,
   getHalfDayForecastHours,
-  getHalfDayForecastTemperature
+  getHalfDayForecastTemperature,
+  renderFiveDaysWeather
 } from "./js/views/weatherView";
 import "./styles/style.sass";
 
@@ -21,9 +22,11 @@ const searchController = async () => {
   await state.weatherData.getDataByCityName();
   await state.weatherData.getWeatherDataByCityKey();
   await state.weatherData.getHalfDayForecast();
+  await state.weatherData.getFiveDaysForecast();
   resetWeatherView();
   currentWeatherController();
   chartController();
+  fiveDaysForecastController();
 };
 
 const currentWeatherController = () => {
@@ -72,6 +75,10 @@ const chartController = () => {
       }
     }
   });
+};
+
+const fiveDaysForecastController = () => {
+  renderFiveDaysWeather(state.weatherData);
 };
 
 DOMElements.searchForm.addEventListener("submit", e => {

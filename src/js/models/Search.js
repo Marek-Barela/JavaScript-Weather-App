@@ -7,6 +7,7 @@ class Search {
     this.cityData = {}
     this.key = ""
   }
+
   async getDataByCityName() {
     try {
       const url = `https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${API_KEY}&q=${this.inputValue}`;
@@ -34,6 +35,16 @@ class Search {
     const forecastData = await axios(url).then(res => res.data);
     this.halfDayForecast = forecastData;
     } catch(err) {
+      console.log(err)
+    }
+  }
+
+  async getFiveDaysForecast() {
+    try {
+      const url = `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${this.key}?apikey=${API_KEY}&metric=true`;
+      const forecastData = await axios(url).then(res => res.data);
+      this.fiveDaysForecast = forecastData.DailyForecasts;
+    }catch(err) {
       console.log(err)
     }
   }
