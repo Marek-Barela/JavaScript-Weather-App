@@ -1,8 +1,12 @@
 import DOMElements from "../DOMSelectors";
+import { roundTemperature } from "../utils/getRoundedTemperature";
+import { convertSecondsToDate } from "../utils/getConvertedDate";
+import { getAddressOfIcon } from "../utils/getIconUrlAddress";
+import { getDayOfWeek } from "../utils/getDayOfWeek";
 
 export const renderCurrentWeather = data => {
   const cityName = data.cityData.LocalizedName;
-  const time = convertSecondsToDate(data);
+  const time = convertSecondsToDate(data.currentWeather.EpochTime);
   const icon = getAddressOfIcon(data.currentWeather.WeatherIcon);
   const temperature = roundTemperature(data.currentWeather.Temperature.Metric.Value);
   const pressure = data.currentWeather.Pressure.Metric.Value;
@@ -26,6 +30,7 @@ const renderForecastWeather = forecast => {
   const nightIcon = getAddressOfIcon(forecast.Night.Icon);
   const minTemperature = roundTemperature(forecast.Temperature.Minimum.Value);
   const maxTemperature = roundTemperature(forecast.Temperature.Maximum.Value);
+
   const markup = `
     <div class="weather__forecast--day-container">
       <h3>${dayOfWeek}</h3>
@@ -39,12 +44,8 @@ const renderForecastWeather = forecast => {
       </div>
     </div>
   `;
+  
   DOMElements.weatherForecastContainer.insertAdjacentHTML("beforeend", markup);
-}
-
-export const renderWeatherChart = () => {
-  const markup = `<canvas class="weather__chart--canvas" width="200" height="120"></canvas>`;
-  DOMElements.chartContainer.insertAdjacentHTML("beforeend", markup);
 }
 
 export const renderFiveDaysWeather = data => {
@@ -53,42 +54,13 @@ export const renderFiveDaysWeather = data => {
   })
 }
 
+export const renderWeatherChart = () => {
+  const markup = `<canvas class="weather__chart--canvas" width="200" height="120"></canvas>`;
+  DOMElements.chartContainer.insertAdjacentHTML("beforeend", markup);
+}
+
 export const resetWeatherView = () => {
   DOMElements.weatherCurrentContainer.innerHTML = "";
   DOMElements.weatherForecastContainer.innerHTML = "";
   DOMElements.chartContainer.innerHTML = "";
-}
-
-const convertSecondsToDate = data => {
-  const secondsToMilliseconds = data.currentWeather.EpochTime * 1000;
-  return new Date(secondsToMilliseconds).toUTCString().slice(0, 16); //Thu, 05 Jul 2019
-}
-
-const getAddressOfIcon = data => {
-  let iconValue = data;
-  if(iconValue < 9) iconValue = "0" + iconValue;
-  return `https://developer.accuweather.com/sites/default/files/${iconValue}-s.png`;
-}
-
-const roundTemperature = data => {
-  return Math.round(data);
-}
-
-export const getHalfDayForecastHours = data => {
-  const getFullTime = data.halfDayForecast.map(time => {
-    return new Date(time.EpochDateTime * 1000)
-  })
-  const splitTime = getFullTime.map(time => time.toString().split(" ")); // "Tue", "Jul", "03", "2018", "19:00:00", "GMT+0200"
-  return splitTime.map(time => time[4].slice(0, 5)); // "19:00:00" to 19:00
-}
-
-export const getHalfDayForecastTemperature = data => {
-  return data.halfDayForecast.map(item => {
-    return Math.round(item.Temperature.Value);
-  })
-}
-
-const getDayOfWeek = time => {
-  let date = new Date(time * 1000).toString().split(" ");
-  return date[0];
 }

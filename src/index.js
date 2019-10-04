@@ -4,11 +4,11 @@ import Chart from "chart.js";
 import {
   renderCurrentWeather,
   resetWeatherView,
-  getHalfDayForecastHours,
-  getHalfDayForecastTemperature,
   renderFiveDaysWeather,
   renderWeatherChart
 } from "./js/views/weatherView";
+import { getHalfDayForecastHours } from "./js/utils/getHalfDayForecastHours";
+import { getHalfDayForecastTemperature } from "./js/utils/getHalfDayForecastTemperature";
 import "./styles/style.sass";
 
 const state = {
