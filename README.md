@@ -4,10 +4,6 @@
 
 Pleasant weather application based on AccuWeather API. The application contains three variants of forecasts with different presentation methods.
 
-## Live
-
-You can see the full project [here](https://nostalgic-einstein-44def4.netlify.com/)
-
 ## Technology
 
 - HTML5
